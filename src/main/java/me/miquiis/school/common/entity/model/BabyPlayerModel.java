@@ -20,7 +20,7 @@ public class BabyPlayerModel extends AnimatedGeoModel<BabyPlayerEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(BabyPlayerEntity object) {
-        return new ResourceLocation(School.MOD_ID, "textures/entity/baby.png");
+        return new ResourceLocation(School.MOD_ID, "textures/entity/" + object.getResourceName() + ".png");
     }
 
     @Override

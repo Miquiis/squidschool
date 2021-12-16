@@ -19,6 +19,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
 
     private String name;
+    private String resourceName;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -27,6 +28,7 @@ public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
         this.ignoreFrustumCheck = true;
         this.lookController = new BabyLookControler(this);
         this.name = "Baby Template";
+        this.resourceName = "baby_template";
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
@@ -81,6 +83,10 @@ public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
 
     public String getBabyName() {
         return name;
+    }
+
+    public String getResourceName() {
+        return resourceName;
     }
 }
 
