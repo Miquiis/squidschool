@@ -54,6 +54,13 @@ public class School
     private void doClientStuff(final FMLClientSetupEvent event)
     {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BABY_PLAYER.get(), BabyPlayerRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.APHMAU_PLAYER.get(), BabyPlayerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MRBEAST_PLAYER.get(), BabyPlayerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.UNSPEAKABLE_PLAYER.get(), BabyPlayerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.LEAH_ASHE_PLAYER.get(), BabyPlayerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DREAM_PLAYER.get(), BabyPlayerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FRAGS_PLAYER.get(), BabyPlayerRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

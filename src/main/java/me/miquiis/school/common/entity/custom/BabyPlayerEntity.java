@@ -27,8 +27,13 @@ public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
         super(type, worldIn);
         this.ignoreFrustumCheck = true;
         this.lookController = new BabyLookControler(this);
-        this.name = "Baby Template";
-        this.resourceName = "baby_template";
+        setNames("Baby Template", "baby_template");
+    }
+
+    public void setNames(String name, String resourceName)
+    {
+        this.name = name;
+        this.resourceName = resourceName;
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
