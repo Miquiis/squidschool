@@ -6,7 +6,9 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.LookController;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -16,18 +18,22 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
+import java.util.Arrays;
+
+public class PlayerEntity extends CreatureEntity implements IAnimatable {
 
     private String name;
     private String resourceName;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public BabyPlayerEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public PlayerEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
         this.ignoreFrustumCheck = true;
-        this.lookController = new BabyLookControler(this);
-        setNames("Baby Template", "baby_template");
+        this.lookController = new PlayerLookController(this);
+        this.setCanPickUpLoot(true);
+
+        setNames("Player Template", "player_template");
     }
 
     public void setNames(String name, String resourceName)
@@ -55,14 +61,14 @@ public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-//        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.baby.panic", true));
-        if ((getMotion().getX() >= 0.0001 || getMotion().getX() <= -0.0001) || (getMotion().getZ() >= 0.0001 || getMotion().getZ() <= -0.0001))
-        {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.baby.walk", true));
-        } else
-        {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.baby.idle", true));
-        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.walk", true));
+//        if ((getMotion().getX() >= 0.0001 || getMotion().getX() <= -0.0001) || (getMotion().getZ() >= 0.0001 || getMotion().getZ() <= -0.0001))
+//        {
+//            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.walk", true));
+//        } else
+//        {
+//            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.idle", true));
+//        }
         return PlayState.CONTINUE;
     }
 
@@ -70,7 +76,7 @@ public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
     {
         if (isSwingInProgress && swingProgress == 0f)
         {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.baby.swing", false));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.swing", false));
         }
         return PlayState.CONTINUE;
     }
@@ -95,9 +101,9 @@ public class BabyPlayerEntity extends CreatureEntity implements IAnimatable {
     }
 }
 
-class BabyLookControler extends LookController {
+class PlayerLookController extends LookController {
 
-    public BabyLookControler(MobEntity mob) {
+    public PlayerLookController(MobEntity mob) {
         super(mob);
     }
 

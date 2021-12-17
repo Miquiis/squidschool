@@ -1,11 +1,9 @@
 package me.miquiis.school.common.entity.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
-import me.miquiis.school.common.entity.custom.BabyPlayerEntity;
-import me.miquiis.school.common.entity.model.BabyPlayerModel;
+import me.miquiis.school.common.entity.custom.PlayerEntity;
+import me.miquiis.school.common.entity.model.PlayerModel;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -13,25 +11,20 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-import java.awt.*;
-import java.util.List;
-import java.util.stream.Collectors;
+public class PlayerRenderer extends GeoEntityRenderer<PlayerEntity> {
 
-public class BabyPlayerRenderer extends GeoEntityRenderer<BabyPlayerEntity> {
-
-    public BabyPlayerRenderer(EntityRendererManager renderManager)
+    public PlayerRenderer(EntityRendererManager renderManager, boolean isSlim)
     {
-        super(renderManager, new BabyPlayerModel());
+        super(renderManager, new PlayerModel(isSlim));
         this.shadowSize = 0.2F;
+        this.addLayer(new HeldItemLayer(this));
     }
 
     @Override
-    public void render(BabyPlayerEntity entity, float entityYaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer bufferIn, int packedLightIn) {
+    public void render(PlayerEntity entity, float entityYaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer bufferIn, int packedLightIn) {
         renderKindaName(entity, new StringTextComponent(entity.getBabyName()), stack, bufferIn, packedLightIn);
         stack.push();
         stack.scale(0.35f,0.35f,0.35f);
@@ -66,7 +59,7 @@ public class BabyPlayerRenderer extends GeoEntityRenderer<BabyPlayerEntity> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(BabyPlayerEntity entity) {
+    public ResourceLocation getEntityTexture(PlayerEntity entity) {
         return null;
     }
 }

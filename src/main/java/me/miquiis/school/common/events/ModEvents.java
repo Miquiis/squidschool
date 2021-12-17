@@ -2,8 +2,7 @@ package me.miquiis.school.common.events;
 
 import me.miquiis.school.School;
 import me.miquiis.school.common.entity.ModEntityTypes;
-import me.miquiis.school.common.entity.custom.BabyPlayerEntity;
-import me.miquiis.school.common.entity.custom.BabyTemplate;
+import me.miquiis.school.common.entity.custom.PlayerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -18,7 +17,7 @@ public class ModEvents {
     {
         ModEntityTypes.ENTITY_TYPES.getEntries().forEach(entityTypeRegistryObject -> {
             try {
-                event.put((EntityType<? extends LivingEntity>) entityTypeRegistryObject.get(), BabyPlayerEntity.setCustomAttributes().create());
+                event.put((EntityType<? extends LivingEntity>) entityTypeRegistryObject.get(), PlayerEntity.setCustomAttributes().create());
             } catch (Exception e)
             {
 
