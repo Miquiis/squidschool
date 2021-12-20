@@ -1,6 +1,7 @@
 package me.miquiis.school.common.entity;
 
 import me.miquiis.school.School;
+import me.miquiis.school.common.entity.custom.MarbleEntity;
 import me.miquiis.school.common.entity.custom.PlayerEntity;
 import me.miquiis.school.common.entity.custom.baby.*;
 import net.minecraft.entity.EntityClassification;
@@ -63,6 +64,13 @@ public class ModEntityTypes {
                     () -> EntityType.Builder.create(UnspeakableBaby::new, EntityClassification.CREATURE)
                             .size(0.35f, 0.75f)
                             .build(new ResourceLocation(School.MOD_ID, "unspeakable_player").toString())
+            );
+
+    public static final RegistryObject<EntityType<MarbleEntity>> MARBLE_ENTITY =
+            ENTITY_TYPES.register("marble",
+                    () -> EntityType.Builder.<MarbleEntity>create(MarbleEntity::new, EntityClassification.MISC)
+                            .size(0.25F, 0.25F).trackingRange(4).updateInterval(10)
+                            .build(new ResourceLocation(School.MOD_ID, "marble").toString())
             );
 
     public static void register(IEventBus eventBus)
