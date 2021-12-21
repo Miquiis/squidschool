@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class LeahAsheBaby extends BabyTemplate {
     public LeahAsheBaby(EntityType<? extends CreatureEntity> type, World worldIn) {
-        super(type, worldIn, "Baby Leah Ashe", "baby_leah_ashe");
+        super(type, worldIn, "Baby Leah Ashe", "&d", "baby_leah_ashe");
     }
 }
 

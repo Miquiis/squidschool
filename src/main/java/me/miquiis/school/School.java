@@ -4,6 +4,7 @@ import me.miquiis.school.common.block.ModBlocks;
 import me.miquiis.school.common.entity.ModEntityTypes;
 import me.miquiis.school.common.entity.custom.MarbleEntity;
 import me.miquiis.school.common.entity.render.PlayerRenderer;
+import me.miquiis.school.common.events.ForgeEvents;
 import me.miquiis.school.common.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -66,6 +67,7 @@ public class School
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.LEAH_ASHE_PLAYER.get(), (ren) -> new PlayerRenderer(ren, true));
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DREAM_PLAYER.get(), (ren) -> new PlayerRenderer(ren, false));
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FRAGS_PLAYER.get(), (ren) -> new PlayerRenderer(ren, false));
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FRAGS_UNIFORMED_PLAYER.get(), (ren) -> new PlayerRenderer(ren, false));
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

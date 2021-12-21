@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class DreamBaby extends BabyTemplate {
     public DreamBaby(EntityType<? extends CreatureEntity> type, World worldIn) {
-        super(type, worldIn, "Baby Dream", "baby_dream");
+        super(type, worldIn, "Baby Dream", "&a", "baby_dream");
     }
 }
 

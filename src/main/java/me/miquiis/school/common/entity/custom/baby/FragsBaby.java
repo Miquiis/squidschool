@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class FragsBaby extends BabyTemplate {
     public FragsBaby(EntityType<? extends CreatureEntity> type, World worldIn) {
-        super(type, worldIn, "Baby Preston", "baby_frags");
+        super(type, worldIn, "Baby Preston", "&c", "baby_frags");
     }
 }
 

@@ -23,6 +23,7 @@ import java.util.Arrays;
 public class PlayerEntity extends CreatureEntity implements IAnimatable {
 
     private String name;
+    private String prefix;
     private String resourceName;
 
     private AnimationFactory factory = new AnimationFactory(this);
@@ -33,12 +34,13 @@ public class PlayerEntity extends CreatureEntity implements IAnimatable {
         this.lookController = new PlayerLookController(this);
         this.setCanPickUpLoot(true);
 
-        setNames("Player Template", "player_template");
+        setNames("Player Template", "&f", "player_template");
     }
 
-    public void setNames(String name, String resourceName)
+    public void setNames(String name, String prefix, String resourceName)
     {
         this.name = name;
+        this.prefix = prefix;
         this.resourceName = resourceName;
     }
 
@@ -94,6 +96,10 @@ public class PlayerEntity extends CreatureEntity implements IAnimatable {
 
     public String getBabyName() {
         return name;
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 
     public String getResourceName() {

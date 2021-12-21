@@ -19,7 +19,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class AphmauBaby extends BabyTemplate {
     public AphmauBaby(EntityType<? extends CreatureEntity> type, World worldIn) {
-        super(type, worldIn, "Baby Aphmau", "baby_aphmau");
+        super(type, worldIn, "Baby Aphmau", "&5", "baby_aphmau");
     }
 }
 

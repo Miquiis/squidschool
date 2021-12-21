@@ -11,13 +11,15 @@
   "item.school.fire_extinguisher": "Fire Extinguisher",
   "item.school.flashlight": "Flashlight",
   "item.school.empty_can": "Empty Can",
-  "item.school.cookie_circle": "Cookie Circle",
+  "item.school.cookie_star": "Cookie Star",
   "item.school.cookie_triangle": "Cookie Triangle",
   "item.school.cookie_umbrella": "Cookie Umbrella",
-  "item.school.broken_circle": "Broken Circle",
+  "item.school.broken_star": "Broken Star",
   "item.school.broken_triangle": "Broken Triangle",
   "item.school.broken_umbrella": "Broken Umbrella",
   "item.school.canned_umbrella": "Canned Umbrella",
-  "item.school.canned_circle": "Canned Circle",
-  "item.school.canned_triangle": "Canned Triangle"
+  "item.school.canned_star": "Canned Star",
+  "item.school.canned_triangle": "Canned Triangle",
+  "item.school.torn_uniform": "Torn Uniform",
+  "item.school.uniform": "Uniform"
 }

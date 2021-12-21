@@ -5,9 +5,9 @@ import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
 
-public class UnspeakableBaby extends BabyTemplate {
-    public UnspeakableBaby(EntityType<? extends CreatureEntity> type, World worldIn) {
-        super(type, worldIn, "Baby Unspeakable", "&2", "baby_unspeakable");
+public class FragsUniformedBaby extends BabyTemplate {
+    public FragsUniformedBaby(EntityType<? extends CreatureEntity> type, World worldIn) {
+        super(type, worldIn, "Baby Preston", "&c", "baby_frags_uniformed");
     }
 }
 

@@ -45,6 +45,13 @@ public class ModEntityTypes {
                             .build(new ResourceLocation(School.MOD_ID, "frags_player").toString())
             );
 
+    public static final RegistryObject<EntityType<FragsUniformedBaby>> FRAGS_UNIFORMED_PLAYER =
+            ENTITY_TYPES.register("frags_uniformed_player",
+                    () -> EntityType.Builder.create(FragsUniformedBaby::new, EntityClassification.CREATURE)
+                            .size(0.35f, 0.75f)
+                            .build(new ResourceLocation(School.MOD_ID, "frags_uniformed_player").toString())
+            );
+
     public static final RegistryObject<EntityType<LeahAsheBaby>> LEAH_ASHE_PLAYER =
             ENTITY_TYPES.register("leah_ashe_player",
                     () -> EntityType.Builder.create(LeahAsheBaby::new, EntityClassification.CREATURE)
