@@ -130,7 +130,7 @@ dependencies {
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.56')
 
-    implementation fg.deobf('com.github.Miquiis:Record:a2965303a5')
+    implementation fg.deobf('com.github.Miquiis:Record:b7f55bc1')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

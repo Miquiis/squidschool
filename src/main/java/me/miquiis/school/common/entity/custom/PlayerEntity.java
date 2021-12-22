@@ -63,14 +63,14 @@ public class PlayerEntity extends CreatureEntity implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.walk", true));
-//        if ((getMotion().getX() >= 0.0001 || getMotion().getX() <= -0.0001) || (getMotion().getZ() >= 0.0001 || getMotion().getZ() <= -0.0001))
-//        {
-//            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.walk", true));
-//        } else
-//        {
-//            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.idle", true));
-//        }
+//        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.walk", true));
+        if (this.prevPosX == this.getPosX() && this.prevPosY == this.getPosY() && this.prevPosZ == this.getPosZ())
+        {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.idle", true));
+        } else
+        {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.player.walk", true));
+        }
         return PlayState.CONTINUE;
     }
 

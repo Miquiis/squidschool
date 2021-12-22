@@ -22,13 +22,6 @@ public class BabyTemplate extends PlayerEntity {
         setNames(name, prefix, resourceName);
     }
 
-    @Nullable
-    @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        sendMessageInChat("Hello, world");
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-    }
-
     public void sendMessageInChat(String message)
     {
         if (this.world.isRemote) return;
