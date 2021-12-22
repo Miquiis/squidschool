@@ -1,5 +1,6 @@
 package me.miquiis.school.common.events;
 
+import me.miquiis.record.common.events.custom.RecordEventPlayEvent;
 import me.miquiis.school.School;
 import me.miquiis.school.common.block.ModBlocks;
 import me.miquiis.school.common.item.ModItems;
@@ -21,6 +22,16 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 @Mod.EventBusSubscriber(modid = School.MOD_ID)
 public class ForgeEvents {
+
+    @SubscribeEvent
+    public static void onRecordPlayEvent(RecordEventPlayEvent e)
+    {
+        System.out.println("Trigger Event Start");
+
+        if (e.getEventLabel().equalsIgnoreCase("salario")) {
+            System.out.println("Trigger Salario");
+        }
+    }
 
     @SubscribeEvent
     public static void onPlayerInteract(PlayerInteractEvent.RightClickBlock e)
