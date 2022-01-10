@@ -2,19 +2,16 @@ package me.miquiis.school;
 
 import me.miquiis.school.common.block.ModBlocks;
 import me.miquiis.school.common.entity.ModEntityTypes;
-import me.miquiis.school.common.entity.custom.MarbleEntity;
+import me.miquiis.school.common.entity.render.FreddyRenderer;
 import me.miquiis.school.common.entity.render.PlayerRenderer;
-import me.miquiis.school.common.events.ForgeEvents;
+import me.miquiis.school.common.entity.render.RoxanneRenderer;
+import me.miquiis.school.common.entity.render.VannyRenderer;
 import me.miquiis.school.common.item.ModItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -59,7 +56,9 @@ public class School
     {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PLAYER.get(), (ren) -> new PlayerRenderer(ren, false));
 
-        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MARBLE_ENTITY.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FREDDY_ENTITY.get(), FreddyRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ROXANNE_ENTITY.get(), RoxanneRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.VANNY_ENTITY.get(), VannyRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.APHMAU_PLAYER.get(), (ren) -> new PlayerRenderer(ren, true));
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MRBEAST_PLAYER.get(), (ren) -> new PlayerRenderer(ren, false));

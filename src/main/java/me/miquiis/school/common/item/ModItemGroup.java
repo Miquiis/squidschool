@@ -8,7 +8,7 @@ public class ModItemGroup {
     public static final ItemGroup SCHOOL_GROUP = new ItemGroup("schooltab") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ModItems.COOKIE_UMBRELLA.get());
+            return new ItemStack(ModItems.UNIFORM.get());
         }
     };
 

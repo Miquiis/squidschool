@@ -1,9 +1,11 @@
 package me.miquiis.school.common.entity;
 
 import me.miquiis.school.School;
-import me.miquiis.school.common.entity.custom.MarbleEntity;
 import me.miquiis.school.common.entity.custom.PlayerEntity;
 import me.miquiis.school.common.entity.custom.baby.*;
+import me.miquiis.school.common.entity.custom.fnaf.FreddyEntity;
+import me.miquiis.school.common.entity.custom.fnaf.RoxanneEntity;
+import me.miquiis.school.common.entity.custom.fnaf.VannyEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -73,11 +75,25 @@ public class ModEntityTypes {
                             .build(new ResourceLocation(School.MOD_ID, "unspeakable_player").toString())
             );
 
-    public static final RegistryObject<EntityType<MarbleEntity>> MARBLE_ENTITY =
-            ENTITY_TYPES.register("marble",
-                    () -> EntityType.Builder.<MarbleEntity>create(MarbleEntity::new, EntityClassification.MISC)
-                            .size(0.25F, 0.25F).trackingRange(4).updateInterval(10)
-                            .build(new ResourceLocation(School.MOD_ID, "marble").toString())
+    public static final RegistryObject<EntityType<FreddyEntity>> FREDDY_ENTITY =
+            ENTITY_TYPES.register("freddy",
+                    () -> EntityType.Builder.create(FreddyEntity::new, EntityClassification.CREATURE)
+                            .size(1f, 3f)
+                            .build(new ResourceLocation(School.MOD_ID, "freddy").toString())
+            );
+
+    public static final RegistryObject<EntityType<VannyEntity>> VANNY_ENTITY =
+            ENTITY_TYPES.register("vanny",
+                    () -> EntityType.Builder.create(VannyEntity::new, EntityClassification.CREATURE)
+                            .size(1f, 3f)
+                            .build(new ResourceLocation(School.MOD_ID, "vanny").toString())
+            );
+
+    public static final RegistryObject<EntityType<RoxanneEntity>> ROXANNE_ENTITY =
+            ENTITY_TYPES.register("roxanne",
+                    () -> EntityType.Builder.create(RoxanneEntity::new, EntityClassification.CREATURE)
+                            .size(1f, 3f)
+                            .build(new ResourceLocation(School.MOD_ID, "roxanne").toString())
             );
 
     public static void register(IEventBus eventBus)
