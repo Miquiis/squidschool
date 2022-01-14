@@ -4,10 +4,18 @@ import me.miquiis.school.common.utils.ColorUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+
 import java.util.EnumSet;
+import java.util.List;
 import java.util.UUID;
 
 public class BabyTemplate extends PlayerEntity {
@@ -29,6 +37,7 @@ public class BabyTemplate extends PlayerEntity {
         super.registerGoals();
         this.goalSelector.addGoal(6, new CustomLookAtGoal(this, net.minecraft.entity.player.PlayerEntity.class, 12.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(1, new PickUpLoot(this));
     }
 }
 

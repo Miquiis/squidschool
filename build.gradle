@@ -130,7 +130,7 @@ dependencies {
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.56')
 
-    implementation fg.deobf('com.github.Miquiis:Record:103fa1e6dd')
+    implementation fg.deobf('com.github.Miquiis:Record:19201ab2f0')
 
     implementation fg.deobf('com.github.Budschie:BudschieMorphMod:v1.16.5-3.0.1')
 

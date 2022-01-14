@@ -2,10 +2,7 @@ package me.miquiis.school.common.events;
 
 import me.miquiis.school.School;
 import me.miquiis.school.common.entity.ModEntityTypes;
-import me.miquiis.school.common.entity.render.FreddyRenderer;
-import me.miquiis.school.common.entity.render.PlayerRenderer;
-import me.miquiis.school.common.entity.render.RoxanneRenderer;
-import me.miquiis.school.common.entity.render.VannyRenderer;
+import me.miquiis.school.common.entity.render.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -19,6 +16,9 @@ public class ClientEvents {
     public static void onClientSetup(FMLClientSetupEvent event)
     {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PLAYER.get(), (ren) -> new PlayerRenderer(ren, false));
+
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BUS_DRIVER.get(), (ren) -> new NormalPlayerRenderer(ren, false));
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SECURITY_GUARD.get(), GuardRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FREDDY_ENTITY.get(), FreddyRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ROXANNE_ENTITY.get(), RoxanneRenderer::new);

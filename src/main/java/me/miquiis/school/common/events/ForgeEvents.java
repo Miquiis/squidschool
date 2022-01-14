@@ -2,6 +2,8 @@ package me.miquiis.school.common.events;
 
 import me.miquiis.record.common.events.custom.RecordEventChatEvent;
 import me.miquiis.record.common.events.custom.RecordEventPlayEvent;
+import me.miquiis.record.common.events.custom.RecordTapeStartEvent;
+import me.miquiis.record.common.models.PlayTake;
 import me.miquiis.school.School;
 import me.miquiis.school.common.block.ModBlocks;
 import me.miquiis.school.common.entity.custom.BabyTemplate;
@@ -37,6 +39,32 @@ public class ForgeEvents {
             System.out.println(e.getMessage());
             BabyTemplate babyTemplate = (BabyTemplate)  e.getEntity();
             babyTemplate.sendMessageInChat(e.getMessage());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRecordStartEvent(RecordTapeStartEvent event)
+    {
+        for (PlayTake take : event.getTapeTakes())
+        {
+            String tag = event.getTapeName() + ":" + take.takeName;
+            event.getWorld().getEntities().forEach(entity -> {
+
+                if (entity.getTags().contains(tag) && entity.getTags().contains("prop"))
+                {
+                    entity.remove();
+                }
+
+                if (entity.getType() == take.currentEntity.getType() && entity.getTags().contains(tag))
+                {
+                    entity.remove();
+                }
+
+                if (entity.getType() == take.currentEntity.getType() && entity.getTags().contains("record") && !entity.getTags().contains("recording"))
+                {
+                    entity.remove();
+                }
+            });
         }
     }
 

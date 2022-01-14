@@ -4,6 +4,7 @@ import me.miquiis.school.School;
 import me.miquiis.school.common.entity.custom.PlayerEntity;
 import me.miquiis.school.common.entity.custom.baby.*;
 import me.miquiis.school.common.entity.custom.fnaf.FreddyEntity;
+import me.miquiis.school.common.entity.custom.fnaf.GuardEntity;
 import me.miquiis.school.common.entity.custom.fnaf.RoxanneEntity;
 import me.miquiis.school.common.entity.custom.fnaf.VannyEntity;
 import net.minecraft.entity.EntityClassification;
@@ -24,6 +25,20 @@ public class ModEntityTypes {
                     () -> EntityType.Builder.create(PlayerEntity::new, EntityClassification.CREATURE)
                             .size(0.35f, 0.75f)
                             .build(new ResourceLocation(School.MOD_ID, "player").toString())
+            );
+
+    public static final RegistryObject<EntityType<BusDriver>> BUS_DRIVER =
+            ENTITY_TYPES.register("bus_driver",
+                    () -> EntityType.Builder.create(BusDriver::new, EntityClassification.CREATURE)
+                            .size(0.6f, 1.8f)
+                            .build(new ResourceLocation(School.MOD_ID, "bus_driver").toString())
+            );
+
+    public static final RegistryObject<EntityType<GuardEntity>> SECURITY_GUARD =
+            ENTITY_TYPES.register("security_guard",
+                    () -> EntityType.Builder.create(GuardEntity::new, EntityClassification.CREATURE)
+                            .size(0.8f, 3.0f)
+                            .build(new ResourceLocation(School.MOD_ID, "security_guard").toString())
             );
 
     public static final RegistryObject<EntityType<AphmauBaby>> APHMAU_PLAYER =
