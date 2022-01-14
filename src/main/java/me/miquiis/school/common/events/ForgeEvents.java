@@ -7,7 +7,9 @@ import me.miquiis.record.common.models.PlayTake;
 import me.miquiis.school.School;
 import me.miquiis.school.common.block.ModBlocks;
 import me.miquiis.school.common.entity.custom.BabyTemplate;
+import me.miquiis.school.common.entity.custom.fnaf.GuardEntity;
 import me.miquiis.school.common.item.ModItems;
+import me.miquiis.school.common.utils.ColorUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -17,12 +19,15 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkHooks;
+
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = School.MOD_ID)
 public class ForgeEvents {
@@ -39,6 +44,15 @@ public class ForgeEvents {
             System.out.println(e.getMessage());
             BabyTemplate babyTemplate = (BabyTemplate)  e.getEntity();
             babyTemplate.sendMessageInChat(e.getMessage());
+        }
+
+        if (e.getEntity() instanceof GuardEntity)
+        {
+            e.setCanceled(true);
+            if (e.getEntity().world.isRemote) return;
+            e.getEntity().world.getPlayers().forEach(playerEntity -> {
+                playerEntity.sendMessage(new StringTextComponent(ColorUtils.color("&e" + "<" + "Security Guard" +"> &r" + e.getMessage())), new UUID(0, 0));
+            });
         }
     }
 
