@@ -1,8 +1,10 @@
 package me.miquiis.school.common.events;
 
+import me.miquiis.record.common.events.custom.RecordEventChatEvent;
 import me.miquiis.record.common.events.custom.RecordEventPlayEvent;
 import me.miquiis.school.School;
 import me.miquiis.school.common.block.ModBlocks;
+import me.miquiis.school.common.entity.custom.BabyTemplate;
 import me.miquiis.school.common.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -24,12 +26,31 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class ForgeEvents {
 
     @SubscribeEvent
+    public static void onRecordChatEvent(RecordEventChatEvent e)
+    {
+        System.out.println("Trigger Chat");
+        if (e.getEntity() instanceof BabyTemplate)
+        {
+            System.out.println("Here");
+            e.setCanceled(true);
+            System.out.println("Send message");
+            System.out.println(e.getMessage());
+            BabyTemplate babyTemplate = (BabyTemplate)  e.getEntity();
+            babyTemplate.sendMessageInChat(e.getMessage());
+        }
+    }
+
+    @SubscribeEvent
     public static void onRecordPlayEvent(RecordEventPlayEvent e)
     {
-        System.out.println("Trigger Event Start");
-
-        if (e.getEventLabel().equalsIgnoreCase("salario")) {
-            System.out.println("Trigger Salario");
+        if (e.getEventLabel().equalsIgnoreCase("removeprops")) {
+            ServerWorld serverWorld = (ServerWorld) e.getEntity().world;
+            serverWorld.getEntities().forEach(entity -> {
+                if (entity.getTags().contains("props"))
+                {
+                    entity.remove();
+                }
+            });
         }
     }
 

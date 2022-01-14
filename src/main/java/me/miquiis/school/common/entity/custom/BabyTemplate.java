@@ -2,20 +2,13 @@ package me.miquiis.school.common.entity.custom;
 
 import me.miquiis.school.common.utils.ColorUtils;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.brain.task.LookAtEntityTask;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.UUID;
 
 public class BabyTemplate extends PlayerEntity {
     public BabyTemplate(EntityType<? extends CreatureEntity> type, World worldIn, String name, String prefix, String resourceName) {
@@ -27,7 +20,7 @@ public class BabyTemplate extends PlayerEntity {
     {
         if (this.world.isRemote) return;
         this.world.getPlayers().forEach(playerEntity -> {
-            playerEntity.sendMessage(new StringTextComponent(ColorUtils.color(getPrefix() + "<" + getBabyName() +"> &r" + message)), null);
+            playerEntity.sendMessage(new StringTextComponent(ColorUtils.color(getPrefix() + "<" + getBabyName() +"> &r" + message)), new UUID(0, 0));
         });
     }
 
@@ -36,6 +29,51 @@ public class BabyTemplate extends PlayerEntity {
         super.registerGoals();
         this.goalSelector.addGoal(6, new CustomLookAtGoal(this, net.minecraft.entity.player.PlayerEntity.class, 12.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+    }
+}
+
+class CustomLookRandomlyGoal extends Goal {
+    private final MobEntity idleEntity;
+    private double lookX;
+    private double lookZ;
+    private int idleTime;
+
+    public CustomLookRandomlyGoal(MobEntity entitylivingIn) {
+        this.idleEntity = entitylivingIn;
+        this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+    }
+
+    /**
+     * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+     * method as well.
+     */
+    public boolean shouldExecute() {
+        return !this.idleEntity.getTags().contains("recording") && this.idleEntity.getRNG().nextFloat() < 0.02F;
+    }
+
+    /**
+     * Returns whether an in-progress EntityAIBase should continue executing
+     */
+    public boolean shouldContinueExecuting() {
+        return this.idleTime >= 0;
+    }
+
+    /**
+     * Execute a one shot task or start executing a continuous task
+     */
+    public void startExecuting() {
+        double d0 = (Math.PI * 2D) * this.idleEntity.getRNG().nextDouble();
+        this.lookX = Math.cos(d0);
+        this.lookZ = Math.sin(d0);
+        this.idleTime = 20 + this.idleEntity.getRNG().nextInt(20);
+    }
+
+    /**
+     * Keep ticking a continuous task that has already been started
+     */
+    public void tick() {
+        --this.idleTime;
+        this.idleEntity.getLookController().setLookPosition(this.idleEntity.getPosX() + this.lookX, this.idleEntity.getPosYEye(), this.idleEntity.getPosZ() + this.lookZ);
     }
 }
 
@@ -74,6 +112,8 @@ class CustomLookAtGoal extends Goal {
      */
     public boolean shouldExecute() {
         if (this.entity.getRNG().nextFloat() >= this.chance) {
+            return false;
+        } else if (this.entity.getTags().contains("recording")) {
             return false;
         } else {
             if (this.entity.getAttackTarget() != null) {
